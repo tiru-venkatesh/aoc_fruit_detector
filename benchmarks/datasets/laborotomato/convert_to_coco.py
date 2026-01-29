@@ -2,11 +2,15 @@ import os
 import json
 import xml.etree.ElementTree as ET
 from PIL import Image
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATASET_ROOT = BASE_DIR
 
-DATASET_ROOT = "PATH_TO_LABOROTOMATO"
 IMG_DIR = os.path.join(DATASET_ROOT, "JPEGImages")
 ANN_DIR = os.path.join(DATASET_ROOT, "Annotations")
-OUTPUT_JSON = "laborotomato_coco.json"
+OUTPUT_JSON = os.path.join(DATASET_ROOT, "laborotomato_coco.json")
+assert os.path.exists(ANN_DIR), f"Annotations folder not found: {ANN_DIR}"
+assert os.path.exists(IMG_DIR), f"Image folder not found: {IMG_DIR}"
+
 
 categories = [
     {"id": 1, "name": "tomato"}
